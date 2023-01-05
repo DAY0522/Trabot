@@ -33,9 +33,9 @@ rcn = EntityRecognizer(
 
 kochat = KochatApi(
     dataset=dataset,
-    embed_processor=(emb, True),
-    intent_classifier=(clf, True),
-    entity_recognizer=(rcn, True),
+    embed_processor=(emb, False),
+    intent_classifier=(clf, False),
+    entity_recognizer=(rcn, False),
     scenarios=[
         weather, dust, travel, restaurant
     ]
@@ -44,7 +44,7 @@ kochat = KochatApi(
 
 @kochat.app.route('/')
 def index():
-    return render_template("index.html")
+    return render_template("index2.html")
 
 
 if __name__ == '__main__':
