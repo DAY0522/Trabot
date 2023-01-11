@@ -1,0 +1,385 @@
+* {
+    box-sizing:border-box;
+    }
+    
+    body {
+    margin:0;
+    padding:0;
+    overflow-y:hidden;
+    }
+    
+    .whole {
+    width:100%;
+    height:100vh;
+    display:flex;
+    flex-direction:row;
+    justify-content:space-between;
+    }
+    
+    .leftimage1{
+        width:30%;
+        height: 108%;
+        background-image: url('./image/1.png');
+        background-size:cover;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+    }
+    .leftimage2{
+        width:30%;
+        height: 108%;
+        background-image: url('./image/2.png');
+        background-size:cover;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+    }
+    .leftimage3{
+        width:30%;
+        height: 108%;
+        background-image: url('./image/3.png');
+        background-size:cover;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+    }
+    .leftimage4{
+        width:30%;
+        height: 108%;
+        background-image: url('./image/4.png');
+        background-size:cover;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+    }
+    
+    
+    .title1-1 {
+    position:absolute;
+    width: 107px;
+    height: 674px;
+    left: 43px;
+    top: 105px;
+    color: #f8f8f8;
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+    font-size: 60px;
+    /*
+    -webkit-text-stroke: 2px darkblue;
+    font-weight:bold;
+    */
+    }
+    
+    .title1 {
+    position:absolute;
+    width: 107px;
+    height: 674px;
+    left: 34px;
+    top: 100px;
+    color: #f8f8f8;
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+    font-size: 60px;
+    /*
+    -webkit-text-stroke: 2px darkgray;
+    font-weight:bold;
+    */
+    }
+    
+    .title2 {
+    border:10px solid white;
+    width:86%;
+    height:94%;
+    }
+    
+    .w-right {
+    width:63%;
+    height:100%;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    margin-right:30px;
+    }
+    
+    .chatbot {
+    width:100%;
+    height:67%;
+    }
+    
+    .chat_window {
+        margin-top:30px;
+        position: relative;
+        width:100%;
+        height:94%;
+        border-radius: 10px;
+        border:3px solid #AAD9EE;
+        /*left:25%;*/
+        box-shadow: 0 0px 20px rgba(0, 0, 0, 0.15);
+        background-color:#F6FCFF;
+        overflow: hidden;
+      }
+    
+    .top_menu {
+        background-color: #fff;
+        width: 100%;
+        padding: 20px 0 15px;
+        box-shadow: 0 1px 30px rgba(0, 0, 0, 0.1);
+      }
+    .top_menu .buttons {
+        margin: 3px 0 0 20px;
+        position: absolute;
+        display:flex;
+      }
+    .top_menu .buttons .button {
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        display: inline-block;
+        margin-right: 10px;
+        position: relative;
+      }
+    .top_menu .buttons .button.close {
+        background-color: #A5C9D1;
+      }
+    .top_menu .buttons .button.minimize {
+        background-color: #AAD9EE;
+      }
+    .top_menu .buttons .button.maximize {
+        background-color: #2883AA;
+      }
+    .top_menu .title {
+        text-align: center;
+        color: #AAD9EE;
+        font-size: 20px;
+      }
+    
+    .messages {
+        position: relative;
+        list-style: none;
+        padding: 20px 10px 0 10px;
+        margin: 0;
+        height: 67%;
+        overflow: scroll;
+        overflow-x: hidden;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+      }
+
+      .messages::-webkit-scrollbar{
+        display: none;
+      }
+
+    .messages .message {
+        clear: both;
+        overflow: hidden;
+        margin-bottom: 20px;
+        transition: all 0.5s linear;
+        opacity: 0;
+      }
+    .messages .message.left .avatar {
+        /*background-color: #B9E9FF;*/
+        background-image:url("./image/챗봇.png");
+        background-size:cover;
+        float: left;
+      }
+    .messages .message.left .text_wrapper {
+        background-color:  #8AD7FA;
+        margin-left: 20px;
+      }
+    .messages .message.left .text_wrapper::after, .messages .message.left .text_wrapper::before {
+        right: 100%;
+        border-right-color: #8AD7FA;
+      }
+    .messages .message.left .text {
+        color: #fff;
+      }
+    .messages .message.right .avatar {
+        background-image:url("./image/애기.png");
+        background-size:cover;
+        /*background-color: #CBE0FF;*/
+        float: right;
+      }
+    .messages .message.right .text_wrapper {
+        background-color: #7BB8FF;
+        margin-right: 20px;
+        float: right;
+      }
+    .messages .message.right .text_wrapper::after, .messages .message.right .text_wrapper::before {
+        left: 100%;
+        border-left-color: #7BB8FF;
+      }
+    .messages .message.right .text {
+        color: #FFFFFF;
+      }
+    .messages .message.appeared {
+        opacity: 1;
+      }
+    .messages .message .avatar {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        display: inline-block;
+      }
+    .messages .message .text_wrapper {
+        display: inline-block;
+        padding: 20px;
+        border-radius: 6px;
+        width: calc(100% - 80px);
+        min-width: 100px;
+        position: relative;
+      }
+    .messages .message .text_wrapper::after, .messages .message .text_wrapper:before {
+        top: 18px;
+        border: solid transparent;
+        content: " ";
+        height: 0;
+        width: 0;
+        position: absolute;
+        pointer-events: none;
+      }
+    .messages .message .text_wrapper::after {
+        border-width: 13px;
+        margin-top: 0px;
+      }
+    .messages .message .text_wrapper::before {
+        border-width: 15px;
+        margin-top: -2px;
+      }
+    .messages .message .text_wrapper .text {
+        font-size: 18px;
+        font-weight: 300;
+      }
+    
+    .bottom_wrapper {
+        position: absolute;
+        width: 100%;
+        background-color: #fff;
+        padding: 20px 20px;
+        height: 20%;
+        align-items: center;
+        /*position: absolute;*/
+        bottom: 0;
+        display:flex;
+        justify-content:space-between;
+      }
+    .bottom_wrapper .message_input_wrapper {
+        height: 50px;
+        border-radius: 25px;
+        border: 1px solid #AAD9EE;
+        width: calc(100% - 160px);
+        position: relative;
+        padding: 0 20px;
+      }
+    .bottom_wrapper .message_input_wrapper .message_input {
+        border: none;
+        height: 100%;
+        box-sizing: border-box;
+        width: calc(100% - 40px);
+        position: absolute;
+        outline-width: 0;
+        color: #1C6FBB;
+      }
+     .bottom_wrapper .send_message {
+        width: 140px;
+        height: 50px;
+        display: inline-block;
+        border-radius: 50px;
+        background-color: #AAD9EE;
+        border: 2px solid #AAD9EE;
+        color: #fff;
+        cursor: pointer;
+        transition: all 0.2s linear;
+        text-align: center;
+        float:right;
+      }
+      .bottom_wrapper .send_message:hover {
+        color: #fff;
+        background-color: #7BB8FF;
+       border: 2px solid #7BB8FF;
+      }
+    .bottom_wrapper .send_message .text {
+        font-size: 18px;
+        font-weight: 300;
+        display: inline-block;
+        line-height: 48px;
+      }
+    
+    .message_template {
+        display: none;
+      }
+    
+    .hashtag {
+    color:#A5C9D1;
+    /*#ff6640*/
+    font-size:20px;
+    }
+    
+    .b_intro {
+    text-align:center;
+    font-size:20px;
+    color:#2883AA;
+    margin-top:34px;
+    font-weight:bold;
+    }
+    
+    .b_image {
+      display:flex;
+      flex-direction:row;
+      justify-content:space-between;
+      width:100%;
+      height:25%;
+      }
+    
+    .img1 {
+    background-image:url("heal1.jpg");
+    background-size:cover;
+    width: 28%;
+    height: 100%;
+    }
+    
+    .img1:hover {
+    opacity:0.3;
+    }
+    
+    .img1I {
+    opacity:0;
+    }
+    
+    .img1I:hover {
+    opacity:1;
+    text-align:center;}
+    
+    
+    .img2 {
+    background-image:url("heal2.jpg");
+    background-size:cover;
+    width: 28%;
+    height: 100%;
+    }
+    
+    .img2I {
+    opacity:0;
+    }
+    
+    .img2I:hover {opacity:1;text-align:center;}
+    
+    .img2:hover {
+    opacity:0.3;
+    }
+    
+    .img3 {
+    background-image:url("heal3.jpg");
+    background-size:cover;
+    width: 28%;
+    height: 100%;
+    }
+    
+    .img3I {
+    opacity:0;
+    }
+    
+    .img3I:hover {opacity:1;text-align:center;}
+    
+    .img3:hover {
+    opacity:0.3;
+    }
