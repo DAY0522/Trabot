@@ -5,12 +5,12 @@
     body {
     margin:0;
     padding:0;
-    overflow-y:scroll;
+    overflow-y:hidden;
     }
     
     .whole {
     width:100%;
-    height:108vh;
+    height:100vh;
     display:flex;
     flex-direction:row;
     justify-content:space-between;
@@ -108,7 +108,7 @@
     
     .chat_window {
         margin-top:30px;
-        /*position: absolute;*/
+        position: relative;
         width:100%;
         height:94%;
         border-radius: 10px;
@@ -160,7 +160,15 @@
         margin: 0;
         height: 67%;
         overflow: scroll;
+        overflow-x: hidden;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
       }
+
+      .messages::-webkit-scrollbar{
+        display: none;
+      }
+
     .messages .message {
         clear: both;
         overflow: hidden;
@@ -243,10 +251,12 @@
       }
     
     .bottom_wrapper {
-        position: relative;
+        position: absolute;
         width: 100%;
         background-color: #fff;
         padding: 20px 20px;
+        height: 20%;
+        align-items: center;
         /*position: absolute;*/
         bottom: 0;
         display:flex;
