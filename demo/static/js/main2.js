@@ -2,7 +2,7 @@
 // === 연산자: 서로 다른 유형 "값" "자료형" 비교
 
 // variables
-let userName = null;
+let userName = localStorage.getItem("userName");
 let state = 'SUCCESS';
 
 // functions
@@ -47,16 +47,17 @@ function sendMessage(text, message_side) {
 }
 
 function greet() { //챗봇 처음 실행될 때, 인사하는 함수
+    if(userName !== null) return setUserName(userName)
     setTimeout(function () {
-        return sendMessage("TRAVOT 방문을 환영합니다~!", 'left');
+        return sendMessage("TRABOT 방문을 환영합니다~!", 'left');
     }, 1000); //1초후에 띄움
 
     setTimeout(function () {
-        return sendMessage("저는 날씨, 미세먼지, 여행지 정보를 알려주는 트래봇입니다!", 'left');
+        return sendMessage("저는 여행지를 추천해주는 트래봇입니다!", 'left');
     }, 2000);
 
     setTimeout(function () {
-        return sendMessage("그전에 사용할 닉네임을 알려주세요!", 'left');
+        return sendMessage("사용할 닉네임을 알려주세요!", 'left');
     }, 3000);
 
 }
@@ -68,14 +69,13 @@ function onClickAsEnter(e) {
 }
 
 function setUserName(username) { //사용자 이름 설정 함수
-
-    if (username != null && username.replace(" ", "" !== "")) {
+    if (username !== null && username.replace(" ", "" !== "")) {
         setTimeout(function () {
-            return sendMessage("반갑습니다." + username + "님, 닉네임이 설정되었습니다!", 'left');
+            return sendMessage("반갑습니다." + username + "님", 'left');
         }, 1000);
 
         setTimeout(function () {
-           return sendMessage("원하는 정보에 대한 번호를 입력하세요! <br> 1.기상정보(날씨, 미세먼지) 2.여행지 추천 or 맛집 3.여행지 코스 추천 ", 'left');
+           return sendMessage("원하는 여행 정보에 대한 키워드를 입력하세요! <br> 1.지역 2. 근처 3.테마 ", 'left');
         }, 2000);
 
         return username; //사용자 이름을 반환
@@ -137,7 +137,9 @@ function onSendButtonClicked() {
     sendMessage(messageText, 'right');
 
     if (userName == null) {
-        userName = setUserName(messageText);
+        localStorage.setItem("userName",messageText);
+        userName = localStorage.getItem("userName");
+        setUserName(userName)
     }
 
     else {
