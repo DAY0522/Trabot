@@ -41,11 +41,9 @@ kochat = KochatApi(
     ]
 )
 
-
 @kochat.app.route('/')
 def index():
-    return render_template("index.html")
-
+    return render_template("index2.html")
 
 if __name__ == '__main__':
     kochat.app.template_folder = kochat.root_dir + 'templates'
