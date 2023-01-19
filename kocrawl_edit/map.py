@@ -54,6 +54,7 @@ class MapCrawler(BaseCrawler):
         :return: 해당지역 장소
         """
 
+        print(location, place)
         result_dict, result_img = MapSearcher().search_travle_by_area(location, place)
         print(result_dict)
         print(type(result_dict))

@@ -49,8 +49,8 @@ class MapSearcher(AreaOpenApi):
 
         :param: area or sigungu
         :return: 0 or 1
-        str에 시, 군, 구가 있으면 즉 sub_area면 1을 return
-                         없으면 즉     area면 0을 returb
+        str에 시, 군, 구가 있으면 즉 sub_area면 True
+                         없으면 즉     area면 False
         """
         last = location[0][-1]
         if last=='시' or last=='군':
@@ -72,11 +72,13 @@ class MapSearcher(AreaOpenApi):
         area, sigungu, type = self._make_area(location)
         print(area, sigungu, type)
         if type==1: # area만 있는 경우
+            self.data_dict = AreaOpenApi().search_landmark_by_area(area)
             print("area만 있는 경우 입니다.")
         elif type==2: # area+sigungu 인 경우
             print('type2 입니다.')
             self.data_dict = AreaOpenApi().search_landmark(area, sigungu)
         else: # sigungu만 있는 경우
+            self.data_dict = AreaOpenApi().search_landmark_by_sigungu(sigungu)
             print("sigungu만 있습니다. 예외처리가 필요합니다.")
 
         return self.data_dict
