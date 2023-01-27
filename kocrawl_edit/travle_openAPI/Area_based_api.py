@@ -55,11 +55,52 @@ class AreaOpenApi(BaseOpenApi):
         print('search_landmark 함수 내부')
         key = self.make_sigungu_key(area, sigungu) # 알고 싶은 여행지의 지역 ket, 시군구 key 호출
         print('key 추출')
-        url_landmark = self.url_sigungu.format(area=key[0], sigungu=key[1]) # 지역/시군구에 대한 여행지 url 생성
+        url_landmark = self.url_travle.format(area=key[0], sigungu=key[1]) # 지역/시군구에 대한 여행지 url 생성
         json_landmark = self.sampling_data_json(url_landmark)
         index_landmark = random.randint(0, len(json_landmark)) # 출력할 landmark의 index를 랜덤으로 호출
         
         json_landmark = json_landmark[index_landmark] # 여행지 정보를 json type으로 변경
         img_landmark = self.get_landmark_img(json_landmark) # 여행지에 대한 img url 반환
-        
+
+        return json_landmark, img_landmark
+
+    def search_landmark_by_area(self, area: str):
+        """ 사용자가 입력한 지역에 대한 여행지 중 하나를 반환
+        (일단 랜덤으로 반환하도록 설정)
+
+        Args:
+            area (str): 여행지를 검색하려는 지역명(ex. 서울, 부산, 대구 등)
+        """
+
+        print('search_landmark 함수 내부')
+        key = self.make_area_key(area)  # 알고 싶은 여행지의 지역 ket, 시군구 key 호출
+        print('key 추출')
+        url_landmark = self.url_travle_by_area.format(area=key[0])  # 지역/시군구에 대한 여행지 url 생성
+        json_landmark = self.sampling_data_json(url_landmark)
+        index_landmark = random.randint(0, len(json_landmark))  # 출력할 landmark의 index를 랜덤으로 호출
+
+        json_landmark = json_landmark[index_landmark]  # 여행지 정보를 json type으로 변경
+        img_landmark = self.get_landmark_img(json_landmark)  # 여행지에 대한 img url 반환
+
+        return json_landmark, img_landmark
+
+    def search_landmark_by_sigungu(self, sigungu: str):
+        """ 사용자가 입력한 시군구에 대한 여행지 중 하나를 반환
+        지역이 없을 시 API 호출이 불가능하므로, 지역을 찾아는 과정이 별도로 필요
+        (일단 랜덤으로 반환하도록 설정)
+
+        Args:
+            sigungu (str): 여행지를 검색하려는 시군구명(ex. 관악구, 동대문구, 영등포구 등)
+        """
+
+        area = self.areaCode_by_sigungu[sigungu]
+        key = self.make_sigungu_key(area, sigungu)  # 알고 싶은 여행지의 지역 ket, 시군구 key 호출
+        print('key 추출')
+        url_landmark = self.url_travle.format(area=key[0], sigungu=key[1])  # 지역/시군구에 대한 여행지 url 생성
+        json_landmark = self.sampling_data_json(url_landmark)
+        index_landmark = random.randint(0, len(json_landmark))  # 출력할 landmark의 index를 랜덤으로 호출
+
+        json_landmark = json_landmark[index_landmark]  # 여행지 정보를 json type으로 변경
+        img_landmark = self.get_landmark_img(json_landmark)  # 여행지에 대한 img url 반환
+
         return json_landmark, img_landmark
