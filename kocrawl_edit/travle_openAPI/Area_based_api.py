@@ -1,5 +1,5 @@
 import random
-from kocrawl.travle_openAPI.base_openAPI import BaseOpenApi
+from travle_openAPI.base_openAPI import BaseOpenApi
 
 class AreaOpenApi(BaseOpenApi):
     def make_area_key(self, area: str): 

@@ -8,7 +8,7 @@ requests.packages.urllib3.disable_warnings(requests.packages.urllib3.exceptions.
 class BaseOpenApi():
     def __init__(self):
         # 본인이 openAPI 사이트에서 발급받은 인증키 입력
-        self.serviceKey = 'ZxyV5bLf9U6/gs8S4NAqISFHJorbjd/Xrg1annceTQicObKR5EGo7ZCP9qmr7d9rH2H9WnhFR/HwGSGWEJbcbw=='
+        self.serviceKey = '7ut0kiJb%2FugaTORVPbk2lljMu0y9IY4HoAzWysfXZIKqVl%2FDJ7zsr6Ca3b7nwotssH2lFdHHms7yUOl2RTCgcA%3D%3D'
 
         self.url_base = 'https://apis.data.go.kr/B551011/KorService/areaCode?MobileOS=ETC&MobileApp=AppTest&_type=json&numOfRows=20&serviceKey=' + self.serviceKey
         self.url_area = 'http://apis.data.go.kr/B551011/KorService/areaCode?serviceKey='+ self.serviceKey +'&numOfRows=100&MobileOS=ETC&MobileApp=AppTest&_type=json&areaCode={area}'
@@ -16,6 +16,8 @@ class BaseOpenApi():
         self.url_travle_by_area = 'https://apis.data.go.kr/B551011/KorService/areaBasedList?MobileOS=ETC&MobileApp=AppTest&_type=json&numOfRows=50000&serviceKey=' + self.serviceKey + '&areaCode={area}'
         self.url_img = 'http://apis.data.go.kr/B551011/KorService/detailImage?serviceKey=' + self.serviceKey + '&numOfRows=10&MobileOS=ETC&MobileApp=AppTest&contentId={contentId}&subImageYN=Y&_type=json'
         self.url_location = 'https://apis.data.go.kr/B551011/KorService/locationBasedList?serviceKey='+ self.serviceKey +'&numOfRows=10000&MobileOS=ETC&MobileApp=AppTest&_type=json&mapX={longitude}&mapY={latitude}&radius=3000'
+        self.url_theme = 'https://apis.data.go.kr/B551011/KorService/searchKeyword?serviceKey='+self.serviceKey+'&MobileOS=ETC&MobileApp=AppTest&_type=json'
+        self.url_theme_area = 'https://apis.data.go.kr/B551011/KorService/areaBasedList?serviceKey='+self.serviceKey+'&MobileOS=ETC&MobileApp=AppTest&_type=json'
 
         self.areaCode_by_sigungu = {'강남구': '서울', '강동구': '서울', '강북구': '서울', '강서구': '서울', '관악구': '서울', '관악구': '서울',
                         '광진구': '서울', '구로구': '서울','금천구': '서울','노원구': '서울','도봉구': '서울','동대문구': '서울','동작구': '서울',
@@ -47,7 +49,6 @@ class BaseOpenApi():
                         '목포시':'전라남도','무안군':'전라남도','보성군':'전라남도','순천시':'전라남도','신안군':'전라남도','여수시':'전라남도','영광군':'전라남도',
                         '완도군':'전라남도','장성군':'전라남도','장흥군':'전라남도','진도군':'전라남도','함평군':'전라남도','해남군':'전라남도','화순군':'전라남도'
                         }
-
 
     def sampling_data_df(self, url): # url에 있는 필요한 정보를 불러오는 함수
         # url 불러오기

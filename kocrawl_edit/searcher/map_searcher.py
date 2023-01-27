@@ -3,14 +3,22 @@
 @since {6/21/2020}
 @see : https://github.com/gusdnd852
 """
+import sys
+import os
+sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
+
 from random import randint
 
-from kocrawl.searcher.base_searcher import BaseSearcher
-from kocrawl.travle_openAPI.Area_based_api import AreaOpenApi
+from kocrawl.searcher.base_searcher import BaseSearcher 
+from travle_openAPI.Area_based_api import AreaOpenApi
+from travle_openAPI.Theme_based_api import ThemeOpenApi 
+#from kocrawl_edit.travle_openAPI.Area_based_api 
+#from kocrawl_edit.travle_openAPI.Theme_based_api 
 
-class MapSearcher(AreaOpenApi):
+class MapSearcher(AreaOpenApi, ThemeOpenApi):
 
     def __init__(self):
+        super().__init__()
         self.data_dict = {
             # 데이터를 담을 딕셔너리 구조를 정의합니다.
             'name': [], 'tel': [],
@@ -82,3 +90,4 @@ class MapSearcher(AreaOpenApi):
             print("sigungu만 있습니다. 예외처리가 필요합니다.")
 
         return self.data_dict
+

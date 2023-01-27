@@ -4,9 +4,11 @@
 @see : https://github.com/gusdnd852
 """
 from kocrawl.answerer.map_answerer import MapAnswerer
+from kocrawl.answerer.map_theme_answerer import MapThemeAnswerer
 from kocrawl.base import BaseCrawler
 from kocrawl.editor.map_editor import MapEditor
 from kocrawl.searcher.map_searcher import MapSearcher
+from kocrawl.searcher.map_theme_searcher import MapThemeSearcher
 
 class MapCrawler(BaseCrawler):
 
@@ -61,4 +63,10 @@ class MapCrawler(BaseCrawler):
         print(location, place)
         result_msg = MapAnswerer().map_form(location, place, result_dict)
         print(result_msg)
+        return result_msg, result_dict
+
+    def request_debug_theme(self, location: str, theme: str) -> tuple:
+        result_dict = MapThemeSearcher().search_travel_by_theme(location, theme)
+        result_msg = MapThemeAnswerer().map_theme_form(location, theme, result_dict)
+
         return result_msg, result_dict

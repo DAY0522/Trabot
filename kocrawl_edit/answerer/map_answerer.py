@@ -24,6 +24,9 @@ class MapAnswerer(BaseAnswerer):
         msg = self._add_msg_from_dict(result, 'contenttypeid', msg, '{contenttypeid}에 관련한 ')
         msg = self._add_msg_from_dict(result, 'title', msg, '{title}에 가보시는 건 어떤가요?')
         msg = self._add_msg_from_dict(result, 'addr1', msg, '주소는 {addr1}입니다.')
+        ## 여기에 여행지 상세정보 url첨부
+        ## https://apis.data.go.kr/B551011/KorService/detailCommon?serviceKey=7ut0kiJb%2FugaTORVPbk2lljMu0y9IY4HoAzWysfXZIKqVl%2FDJ7zsr6Ca3b7nwotssH2lFdHHms7yUOl2RTCgcA%3D%3D&MobileOS=ETC&MobileApp=AppTest&_type=json&contentId=126508&defaultYN=Y&firstImageYN=Y&areacodeYN=Y&catcodeYN=Y&addrinfoYN=Y&mapinfoYN=Y&overviewYN=Y
+        ## 지역 아이디만 알아도 가능, 보내는 링크에 /detail/{contentId}를 첨부
         msg = msg.format(place=place, location=location, contenttypeid=result['contenttypeid'], title=result['title'],
                          addr1=result['addr1'])
 
