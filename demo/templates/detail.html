@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      @font-face {
+        font-family: "EliceDigitalBaeum-Bd";
+        src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_elice@1.0/EliceDigitalBaeum-Bd.woff2")
+          format("woff2");
+      }
+      body {
+        width: 100%;
+        height: max-content;
+        display: flex;
+        justify-content: center;
+        background-color: F0F8FF;
+        overflow-x: hidden;
+        font-family: "EliceDigitalBaeum-Bd";
+      }
+      .page {
+        width: 1200px;
+        margin-top: 100px;
+        border: 5px solid rgb(101, 172, 234);
+        background-color: white;
+        border-radius: 20px;
+        position: relative;
+        min-height: 100vh;
+        margin-bottom: 100px;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        padding-top: 60px;
+        padding-bottom: 40px;
+        height: max-content;
+      }
+      .head {
+        background-color: white;
+        border: 3px solid rgb(101, 172, 234);
+        border-radius: 20px;
+        position: absolute;
+        top: -40px;
+        left: 100px;
+        padding: 0 20px;
+        min-width: 200px;
+        min-height: 60px;
+      }
+      .simple {
+        display: flex;
+        width: 95%;
+        height: 50%;
+      }
+      #imgContainer {
+        width: 50%;
+        height: 100%;
+      }
+      #img {
+        width: 100%;
+        height: 100%;
+        border-radius: 20px;
+      }
+      #simple-detail {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: flex-start;
+        padding-left: 20px;
+      }
+      #detail {
+        width: 95%;
+        margin-top: 15px;
+        height: max-content;
+        min-height: 45%;
+        border: 1px solid rgb(101, 172, 234);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <div class="head">
+        <h1 id="title"></h1>
+      </div>
+      <div class="simple">
+        <!-- 왼쪽은 사진(크게), 오른쪽은 주소나 전화번호와 같은 간단한 정보 담는 클래스-->
+        <div id="imgContainer">
+          <img id="img" src="../static/css/image/detail-default.png" />
+        </div>
+        <div id="simple-detail">
+          <h2 id="addr"></h2>
+          <h2 id="tel"></h2>
+        </div>
+      </div>
+      <div id="detail">
+        <!-- 자세한 얘기를 적어보는 클래스-->
+      </div>
+    </div>
+  </body>
+  <script>
+    const contentId = document.location.href.split("contentId=")[1];
+
+    const TITLE = document.getElementById("title");
+    const IMG = document.getElementById("img");
+    const ADDR = document.getElementById("addr");
+    const TEL = document.getElementById("tel");
+    const DETAIL = document.getElementById("detail");
+
+    fetch(`/get/detail`, {
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      method: "POST",
+      body: JSON.stringify({
+        contentId: contentId,
+      }),
+    })
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        if (data.img !== "") IMG.src = data.img;
+
+        TITLE.innerHTML = `"${data.title}" 소개서`;
+        ADDR.innerHTML = `주소: ${data.addr1 ? data.addr1 : "---"}`;
+        TEL.innerHTML = `전화번호: ${data.tel ? data.tel : "---"}`;
+        DETAIL.innerHTML = `${data.overview ? data.overview : "---"}`;
+      });
+  </script>
+</html>
