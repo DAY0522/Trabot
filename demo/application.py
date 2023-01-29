@@ -14,9 +14,7 @@ from kochat.loss import CRFLoss, CosFace, CenterLoss, COCOLoss, CrossEntropyLoss
 from kochat.model import intent, embed, entity
 from kochat.proc import DistanceClassifier, GensimEmbedder, EntityRecognizer, SoftmaxClassifier
 
-from scenario import dust, weather, travel, restaurant
-# 에러 나면 이걸로 실행해보세요!
-
+from scenario import travel
 
 dataset = Dataset(ood=True)
 emb = GensimEmbedder(model=embed.FastText())
@@ -37,7 +35,7 @@ kochat = KochatApi(
     intent_classifier=(clf, False),
     entity_recognizer=(rcn, False),
     scenarios=[
-        weather, dust, travel, restaurant
+        travel
     ]
 )
 

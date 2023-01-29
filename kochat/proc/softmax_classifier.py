@@ -52,7 +52,7 @@ class SoftmaxClassifier(IntentClassifier):
             self._calibrate_msg(softmax)
 
         if self.softmax_fallback_detection_criteria == 'auto':
-            if self.softmax_fallback_detection_threshold.predict(softmax) == 0:
+            if self.fallback_detector.predict(softmax) == 0:
                 return list(self.label_dict)[predict[0]]
 
         else:

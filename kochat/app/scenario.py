@@ -1,17 +1,8 @@
-# Copyright 2020 Kochat. All Rights Reserved.
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-# http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-
+"""
+@auther Hyunwoong
+@since {6/21/2020}
+@see : https://github.com/gusdnd852
+"""
 
 import inspect
 from collections import Callable
@@ -125,17 +116,24 @@ class Scenario:
         result = self.__check_entity(entity, text, scenario)
         result = self.__set_default(result)
         required_entity = [k for k, v in result.items() if len(v) == 0]
-
+        print("apply 함수 result 출력값 : ", result)
         if len(required_entity) == 0:
+            print("scenario apply if문")
+            print(text)
+            print(*result.values())
+            raw_data = self.api(*result.values())  # kocrawl api 호출하는 부분
             return {
                 'input': text,
                 'intent': self.intent,
                 'entity': entity,
                 'state': 'SUCCESS',
-                'answer': self.api(*result.values())
+                'answer': raw_data[0],
+                'img' : raw_data[1]
             }
 
         else:
+            print("scenario apply else문")
+            print(text)
             return {
                 'input': text,
                 'intent': self.intent,

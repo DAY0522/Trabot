@@ -1,18 +1,3 @@
-# Copyright 2020 Kochat. All Rights Reserved.
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-# http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-
-
 from typing import List
 
 from flask import Flask
@@ -94,12 +79,14 @@ class KochatApi:
             :param text: 유저 입력 문자열
             :return: json 딕셔너리
             """
-
+            print("request_chat 호출")
             prep = self.dataset.load_predict(text, self.embed_processor)
             intent = self.intent_classifier.predict(prep, calibrate=False)
             entity = self.entity_recognizer.predict(prep)
             text = self.dataset.prep.tokenize(text, train=False)
             self.dialogue_cache[uid] = self.scenario_manager.apply_scenario(intent, entity, text)
+            print("request_chat dialogue_cache[uid]:", self.dialogue_cache[uid])
+            print()
             return self.dialogue_cache[uid]
 
         @self.app.route('/{}/<uid>/<text>'.format(self.fill_slot_url_pattern), methods=['GET'])
@@ -112,7 +99,7 @@ class KochatApi:
             :param text: 유저 입력 문자열
             :return: json 딕셔너리
             """
-
+            print("fill_slot 호출")
             prep = self.dataset.load_predict(text, self.embed_processor)
             entity = self.entity_recognizer.predict(prep)
             text = self.dataset.prep.tokenize(text, train=False)
