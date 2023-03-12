@@ -20,7 +20,7 @@
 
 ## ▶ 프로젝트 구성도
 
-![project_architecture](https://user-images.githubusercontent.com/79097171/224551797-e32aa89e-5318-465f-b7d2-242f1c85f87e.png)
+![project_architecture](https://user-images.githubusercontent.com/79097171/224551872-bd480a8d-65b9-456b-8dff-9e03b44f816b.png)
 
 1️⃣ 사용자가 원하는 정보를 채팅에 입력하여 여행지 정보를 요청합니다.<br>
 2️⃣ 사용자가 입력한 채팅을 서버를 통해 TRAVOT에 전달하여 여행지 키워드를 분석합니다.<br>
